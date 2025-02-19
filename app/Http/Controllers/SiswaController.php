@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\SiswaModel;
 use App\Models\KotaModel;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class SiswaController extends Controller
 {
     public function index(Request $request)
+    {   
+        $kota = KotaModel::all();
+        return view('siswa', compact('kota'));
+    }
+
+    // method untuk mengambil data dari database melalui Ajax
+    public function getDataTable(Request $request)
     {
         if ($request->ajax()) {
             $data = SiswaModel::with('kota')->select(['id','nisn','nama','tgl_lahir','jenis_kelamin','alamat','id_kota']);
@@ -35,9 +42,6 @@ class SiswaController extends Controller
                 ->rawColumn(['aksi'])
                 ->make(true);
         }    
-        
-        $kota = KotaModel::all();
-        return view('siswa', compact('kota'));
     }
     
     public function store(Request $request)

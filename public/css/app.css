@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-:root{
+:root {
     font-family: "Poppins", serif;
 }
 
@@ -8,96 +8,113 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
 
-  .login-container {
-    margin-top: 10%;
-    margin-bottom: 5%;
-    border: 1px solid #CCD1D1;
+body, html {
+  margin: 0;
+  padding: 0;
+  /* Untuk Firefox, IE, Edge lama */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Login & Register */
+.login-container {
+    margin-top: 5%;
+    margin-bottom: 7%;
+    margin-right: 20%;
+    border: 1px solid #ccd1d1;
     border-radius: 5px;
-    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    max-width: 50%;
-  }
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    z-index: 0;
+    width: 500px;
+    padding: 1%;
+}
 
-  .ads {
+.ads {
     background-color: #413270;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding: 0;
-    margin: 0;
-    height: 100%;
-  }
+    max-width: min-content;
+    max-height: min-content;
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    z-index: 1;
+}
 
-  .ads img {
+.ads img {
     object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-  #fl {
-    font-weight: 600;
-  }
-
-  #sl {
-    font-weight: 100 !important;
-  }
-
-  .profile-img {
+.profile-img {
     text-align: center;
-  }
+}
 
-  .profile-img img {
+.profile-img img {
     border-radius: 50%;
     /* animation: mymove 2s infinite; */
-  }
+}
 
-  @keyframes mymove {
-    from {border: 1px solid #F2F3F4;}
-    to {border: 8px solid #F2F3F4;}
-  }
-
-  .login-form {
+.login-form {
     padding: 15px;
-  }
+}
 
-  .login-form h3 {
+.login-form h3 {
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 5px;
     font-weight: 400;
-  }
+    font-size: 30px;
+}
 
-  .form-control {
+.form-control {
     font-size: 14px;
-  }
+}
 
-  .forget-password a {
+.forget-password a {
     font-weight: 500;
     text-decoration: none;
     font-size: 14px;
-  }
+}
 
-
-  .btn-login{
+.btn-login {
     background-color: #413270;
     color: white;
     font-weight: 500;
-  }
-  
-  .btn-login:hover{
+    height: 40px;
+    padding: 5px;
+}
+
+.btn-login:hover {
     background-color: white;
     color: #413270;
     font-weight: 500;
     cursor: pointer;
     border: 2px solid #413270;
-  }
-  
-  small a{
-    color:  #413270;
+}
+
+small a {
+    color: #413270;
     font-weight: bold;
     text-decoration: none;
-  }
+}
 
-  small a:hover{
-    color:  #9875ff;
-  }
+small a:hover {
+    color: #9875ff;
+}
+
+/* Dashboard */
+.ct-dashboard{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

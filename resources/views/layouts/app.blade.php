@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-mode">
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'AppDasis')</title>
     <!-- Include CSS template yang telah Anda download -->
-    <link rel="stylesheet" href="{{ asset('template/dist/css/template.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -14,7 +14,7 @@
     <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
     @stack('styles')
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini dark-mode">
 <div class="wrapper">
     @include('layouts.header')
     @include('layouts.sidebar')

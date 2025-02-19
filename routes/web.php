@@ -28,6 +28,8 @@ Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard'
 
 //Siswa
 Route::resource('siswa', SiswaController::class);
+Route::get('/siswa/dataTable', [SiswaController::class,'getDataTable'])->name('siswa.getDataTable');
 
 //Kota
 Route::resource('kota', KotaController::class);
+Route::get('/kota/dataTable', [KotaController::class,'getDataTable'])->name('kota.getDataTable');

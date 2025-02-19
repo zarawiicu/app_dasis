@@ -4,27 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KotaModel;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class KotaController extends Controller
 {
     public function index(Request $request)
     {
+        $data = KotaModel::all();
+        return view('kota', compact('data'));
+    }
+
+    // method untuk mengambil data dari database melalui Ajax
+    public function getDataTable(Request $request)
+    {
         if ($request->ajax()) {
-            $data = KotaModel::select(['id', 'nama_kota']);
+            $data = KotaModel::select(['id','nama_kota'])->get();
+
             return DataTables::of($data)
-                ->addColumn('Aksi', function ($row) {
+                ->addColumn('aksi', function ($row) {
                     return '
-                        <button class="btn btn-info btn-sm show-btn" data-id="'.$row->id.'">Show</button>
-                        <button class="btn btn-warning btn-sm edit-btn" data-id="'.$row->id.'" data-nama="'.$row->nama_kota.'">Edit</button>
-                        <button class="btn btn-danger btn-sm delete-btn" data-id="'.$row->id.'">Hapus</button>
-                    ';
+                    <button class="btn btn-info btn-sm show-btn" data-id="' . $row->id . '">Show</button>
+                    <button class="btn btn-warning btn-sm edit-btn" data-id="' . $row->id . '" data-nama="' . $row->nama_kota . '">Edit</button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="' . $row->id . '">Hapus</button>
+                ';
                 })
-                ->rawColumns(['Aksi'])
+                ->rawColumns(['aksi'])
                 ->make(true);
         }
-        return view('kota.index');
     }
+
 
     public function store(Request $request)
     {

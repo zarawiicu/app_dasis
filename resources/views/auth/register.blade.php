@@ -10,14 +10,12 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
+  <div class="col-md-6 d-none d-md-block ads">
+    <img src="{{ asset('template/dist/img/ambis.png') }}" alt="Profile Image">
+  </div>
   <div class="container login-container">
-    <div class="row justify-content-center align-items-center">
-      <!-- Gambar di sebelah kiri (hanya tampil di layar md ke atas) -->
-      <div class="col-md-6 d-none d-md-block ads">
-        <img src="{{ asset('template/dist/img/ambis.png') }}" alt="Profile Image">
-      </div>
-      <!-- Form register di sebelah kanan -->
-      <div class="col-md-6">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-md-8">
         <div class="login-form">
           <h3 class="text-center mb-4">Register</h3>
           <form action="{{ route('register.proses') }}" method="POST">
