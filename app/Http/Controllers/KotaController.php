@@ -33,7 +33,6 @@ class KotaController extends Controller
         }
     }
 
-
     public function store(Request $request)
     {
         $request->validate(['nama_kota' => 'required']);
