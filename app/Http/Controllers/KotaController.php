@@ -4,40 +4,47 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KotaModel;
-use Yajra\DataTables\Facades\DataTables;
 
 class KotaController extends Controller
 {
     public function index(Request $request)
     {
-        $data = KotaModel::all();
-        return view('kota', compact('data'));
-    }
+        $query = KotaModel::query();
 
-    // method untuk mengambil data dari database melalui Ajax
-    public function getDataTable(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = KotaModel::select(['id','nama_kota'])->get();
-
-            return DataTables::of($data)
-                ->addColumn('aksi', function ($row) {
-                    return '
-                    <button class="btn btn-info btn-sm show-btn" data-id="' . $row->id . '">Show</button>
-                    <button class="btn btn-warning btn-sm edit-btn" data-id="' . $row->id . '" data-nama="' . $row->nama_kota . '">Edit</button>
-                    <button class="btn btn-danger btn-sm delete-btn" data-id="' . $row->id . '">Hapus</button>
-                ';
-                })
-                ->rawColumns(['aksi'])
-                ->make(true);
+        // Search
+        if ($request->has('search')) {
+            $query->where('nama_kota', 'LIKE', "%{$request->search}%");
         }
+
+        // Sorting
+        if ($request->has('sort_by') && in_array($request->sort_by, ['id', 'nama_kota'])) {
+            $sortType = $request->sort_type == 'desc' ? 'desc' : 'asc';
+            $query->orderBy($request->sort_by, $sortType);
+        } else {
+            $query->orderBy('id', 'asc');
+        }
+
+        $data = $query->paginate(5);
+
+        if ($request->ajax()) {
+            return view('kota.table', compact('data'))->render();
+        }
+
+        return view('kota.index', compact('data'));
     }
+
 
     public function store(Request $request)
     {
-        $request->validate(['nama_kota' => 'required']);
-        KotaModel::create(['nama_kota' => $request->nama_kota]);
-        return response()->json(['success' => 'Data kota berhasil ditambahkan!']);
+        $request->validate([
+            'nama_kota' => 'required'
+        ]);
+
+        KotaModel::create([
+            'nama_kota' => $request->nama_kota
+        ]);
+
+        return redirect()->route('kota.index')->with('success', 'Data kota berhasil ditambahkan!');
     }
 
     public function show($id)
@@ -49,16 +56,28 @@ class KotaController extends Controller
         return response()->json(['error' => 'Data tidak ditemukan'], 404);
     }
 
+    public function edit($id)
+    {
+        $kota = KotaModel::find($id);
+        return response()->json($kota);
+    }
+
     public function update(Request $request, $id)
     {
-        $request->validate(['nama_kota' => 'required']);
-        KotaModel::where('id', $id)->update(['nama_kota' => $request->nama_kota]);
-        return response()->json(['success' => 'Data kota berhasil diperbarui!']);
+        $request->validate([
+            'nama_kota' => 'required'
+        ]);
+
+        KotaModel::where('id', $id)->update([
+            'nama_kota' => $request->nama_kota
+        ]);
+
+        return redirect()->route('kota.index')->with('success', 'Data kota berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         KotaModel::destroy($id);
-        return response()->json(['success' => 'Data kota berhasil dihapus!']);
+        return redirect()->route('kota.index')->with('success', 'Data kota berhasil dihapus!');
     }
 }

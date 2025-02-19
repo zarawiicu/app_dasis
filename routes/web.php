@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::post('register', [AuthController::class, 'register'])->name('register.pro
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 //Dashboard
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //Siswa
 Route::resource('siswa', SiswaController::class);

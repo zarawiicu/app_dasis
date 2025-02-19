@@ -53,7 +53,6 @@ class AuthController extends Controller
         return back()->withErrors(['login' => 'Login gagal, periksa email/username dan password Anda.']);
     }
 
-
     public function logout(Request $request)
     {
         Auth::logout();
@@ -61,10 +60,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login')->with('success', 'Logout berhasil!');
-    }
-
-    public function dashboard() {
-        return view('dashboard');
     }
 }
 ?>
