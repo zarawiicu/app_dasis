@@ -36,32 +36,33 @@
  <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script>
-     $(document).ready(function() {
-         $('#logout-link').on('click', function(e) {
-             e.preventDefault();
-             Swal.fire({
-                 title: 'Are you sure?',
-                 text: "You will be logged out.",
-                 icon: 'warning',
-                 showCancelButton: true,
-                 confirmButtonColor: '#3085d6',
-                 cancelButtonColor: '#d33',
-                 confirmButtonText: 'Yes, logout!'
-             }).then((result) => {
-                 if (result.isConfirmed) {
-                     $('#logout-form').submit();
-                 }
-             });
-         });
-     });
- </script>
- <script>
-     $.ajaxSetup({
-         headers: {
-             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         }
-     });
- </script>
+    $(document).ready(function() {
+        $('#logout-link').on('click', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda akan keluar.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, keluar!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#logout-form').submit();
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
  </body>
 
  </html>

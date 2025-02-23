@@ -42,7 +42,7 @@
 
             <ul class="navbar-nav ml-auto">
                 <span class="d-none d-md-inline-block"
-                    style="padding-right:3px;padding-top:7%">{{ Auth::user()->username }}</span>
+                    style="padding-right:3px;padding-top:10%">{{ Auth::user()->username }}</span>
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                         <img src="{{ asset('template/dist/img/pp.jpg') }}" alt="User Avatar"
@@ -70,26 +70,6 @@
         <script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            $(document).ready(function() {
-                $('#logout-link').on('click', function(e) {
-                    e.preventDefault();
-                    Swal.fire({
-                        title: 'Apakah Anda yakin?',
-                        text: "Anda akan keluar dari sistem.",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, logout!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $('#logout-form').submit();
-                        }
-                    });
-                });
-            });
-        </script>
         <script>
           $(document).ready(function() {
               $('[data-widget="pushmenu"]').on('click', function() {

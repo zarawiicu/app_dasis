@@ -28,4 +28,3 @@
 <div class="d-flex justify-content-end">
     {{ $data->links('pagination::bootstrap-4') }}
 </div>
-
